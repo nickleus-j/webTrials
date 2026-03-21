@@ -1,0 +1,28 @@
+<div class="container">
+  <h2>Integer to Roman Numeral Converter</h2>
+
+  <div class="input-group">
+    <label for="numberInput">Enter an integer (1-3999):</label>
+    <input
+      id="numberInput"
+      type="number"
+        [(ngModel)]="this.inputNumber"
+      (keyup.enter)="convertToRoman()"
+      placeholder="Enter a number"
+      class="input-field"
+    />
+    <button (click)="convertToRoman()" class="convert-btn">Convert</button>
+  </div>
+  @if(this.errorMessage) {
+    <div class="error-message">
+        {{ errorMessage }}
+    </div>
+  }
+  
+  @if(this.romanNumeral) {
+    <fieldset class="result">
+      <legend class="result-label">Roman Numeral:</legend>
+      <p class="result-value">{{ this.romanNumeral }}</p>
+    </fieldset>
+  }
+</div>
