@@ -8,11 +8,10 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-h1 {
+h1 ,h2{
   text-align: center;
   color: #fff;
   margin-bottom: 30px;
-  font-size: 28px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
