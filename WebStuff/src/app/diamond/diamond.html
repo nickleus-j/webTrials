@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>Diamond ASCII Art Generator</h1>
+
+  <div class="control-group">
+     <div style="padding: 20px;">
+      <h3>Diamond Generator</h3>
+      <select [(ngModel)]="selectedSize">
+        <option *ngFor="let size of sizes" [value]="size">{{ size }}</option>
+      </select>
+      <button (click)="generateDiamond()" style="margin-left: 10px;">Generate</button>
+
+      
+    </div>
+  </div>
+
+  <div *ngIf="diamondArt" class="result">
+    <pre style="margin-top: 20px; font-family: monospace;">{{ diamondArt }}</pre>
+  </div>
+</div>
