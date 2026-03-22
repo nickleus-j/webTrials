@@ -3,7 +3,9 @@
 
   <div class="control-group">
       <select [(ngModel)]="selectedSize" class="dropdown">
-        <option *ngFor="let size of sizes" [value]="size">{{ size }}</option>
+        @for (size of sizes; track size) {
+            <option [value]="size">{{ size }}</option>
+        }
       </select>
       <button (click)="generateDiamond()" class="generate-btn">Generate</button>
   </div>
