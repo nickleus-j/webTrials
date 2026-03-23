@@ -1,0 +1,18 @@
+<div class="container">
+  <h2>Square ASCII Art Generator</h2>
+
+  <div class="control-group">
+      <select [(ngModel)]="selectedSize" class="dropdown">
+        @for (size of sizes; track size) {
+            <option [value]="size">{{ size }}</option>
+        }
+      </select>
+      <button (click)="generateBlocks()" class="generate-btn">Generate</button>
+  </div>
+@if(this.squareArt){
+<div class="result">
+    <pre >{{ squareArt }}</pre>
+  </div>
+}
+  
+</div>
