@@ -3,11 +3,12 @@
 
   <div class="form-group">
     <label for="inputText">Message:</label>
-    <input type="text" 
-      id="inputText" 
-      [(ngModel)]="this.inputText" 
-      (ngModelChange)="processText()" 
-      placeholder="Enter your text here..."/>
+    <textarea 
+  id="inputText" 
+  [ngModel]="inputText" 
+  (ngModelChange)="inputText = $event; processText()" 
+  placeholder="Enter your text here..."
+  rows="4"></textarea>
   </div>
 
   <div class="controls">
@@ -33,10 +34,6 @@
 
   <div class="form-group">
     <label for="outputText">Result:</label>
-    <input 
-      id="outputText" 
-      [value]="outputText" 
-      readonly 
-      class="result-box"/>
+      <h2>{{outputText}}</h2>
   </div>
 </div>
