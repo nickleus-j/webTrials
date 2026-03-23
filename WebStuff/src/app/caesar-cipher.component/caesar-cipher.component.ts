@@ -27,11 +27,11 @@ export class CaesarCipherComponent {
     this.outputText = this.applyCipher(this.inputText, shift);
   }
 
-  private applyCipher(str: string, shift: number): string {
+  private applyCipher(text: string, shift: number): string {
     // Normalize the shift to handle negative numbers (for decryption) and shifts larger than 26
     const normalizedShift = ((shift % 26) + 26) % 26;
 
-    return str.split('').map(char => {
+    return text.split('').map(char => {
       // Check if the character is a letter
       if (char.match(/[a-z]/i)) {
         const code = char.charCodeAt(0);
