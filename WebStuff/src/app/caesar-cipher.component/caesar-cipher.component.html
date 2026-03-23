@@ -1,0 +1,42 @@
+<div class="cipher-container">
+  <h2>Caesar Cipher Tool</h2>
+
+  <div class="form-group">
+    <label for="inputText">Message:</label>
+    <input type="text" 
+      id="inputText" 
+      [(ngModel)]="this.inputText" 
+      (ngModelChange)="processText()" 
+      placeholder="Enter your text here..."/>
+  </div>
+
+  <div class="controls">
+    <div class="form-group shift-input">
+      <label for="shift">Shift (0-25):</label>
+      <input 
+        type="number" 
+        id="shift" 
+        [(ngModel)]="shiftAmount" 
+        (ngModelChange)="processText()" 
+        min="0">
+    </div>
+
+    <div class="form-group radio-group">
+      <label>
+        <input type="radio"  value="encrypt" [(ngModel)]="mode" (change)="processText()"> Encrypt
+      </label>
+      <label>
+        <input type="radio" value="decrypt" [(ngModel)]="mode" (change)="processText()"> Decrypt
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="outputText">Result:</label>
+    <input 
+      id="outputText" 
+      [value]="outputText" 
+      readonly 
+      class="result-box"/>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+.cipher-container {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  font-family: sans-serif;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 0;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+textarea, input[type="number"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #eee;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.shift-input {
+  margin-bottom: 0;
+}
+
+.shift-input input {
+  width: 80px;
+}
+
+.radio-group {
+  flex-direction: row;
+  gap: 15px;
+  margin-bottom: 0;
+}
+
+.radio-group label {
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.result-box {
+  background-color: #e8f4f8;
+  border-color: #bce8f1;
+}
