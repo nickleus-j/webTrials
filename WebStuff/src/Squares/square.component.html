@@ -2,15 +2,18 @@
   <h2>Square ASCII Art Generator</h2>
 
   <div class="control-group">
+    <p class="center-text">
       <select [(ngModel)]="selectedSize" class="dropdown">
         @for (size of sizes; track size) {
             <option [value]="size">{{ size }}</option>
         }
       </select>
-      <button (click)="generateBlocks()" class="generate-btn">Generate</button>
+      <a (click)="generateBlocks()" class="generate-btn">Generate</a>
+    </p>
+     
   </div>
 @if(this.squareArt){
-<div class="result">
+<div class="result center-text">
     <pre >{{ squareArt }}</pre>
   </div>
 }
