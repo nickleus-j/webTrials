@@ -1,0 +1,170 @@
+<html>
+    <head>
+        <title>Nickleus Jimenez</title>
+        <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+
+    .form-group {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #4CAF50;
+      box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    button:active {
+      background-color: #3d8b40;
+    }
+
+    #resultsList {
+      margin-top: 20px;
+      list-style: none;
+      padding: 0;
+    }
+
+    #resultsList li {
+      padding: 10px;
+      background-color: #e8f5e9;
+      border-left: 4px solid #4CAF50;
+      margin-bottom: 8px;
+      border-radius: 4px;
+    }
+
+    .no-results {
+      color: #999;
+      text-align: center;
+      padding: 20px;
+      font-style: italic;
+    }
+  </style>
+        <script type="text/javascript">
+            function fuzzySearch(array, query) {
+  const lowerQuery = query.toLowerCase();
+
+  return array
+    .map(item => {
+      const lowerItem = item.toLowerCase();
+      let queryIndex = 0;
+      let score = 0;
+
+      for (let i = 0; i < lowerItem.length && queryIndex < lowerQuery.length; i++) {
+        if (lowerItem[i] === lowerQuery[queryIndex]) {
+          score++;
+          queryIndex++;
+        }
+      }
+
+      return { item, score, matched: queryIndex === lowerQuery.length };
+    })
+    .filter(result => result.matched)
+    .sort((a, b) => b.score - a.score)
+    .map(result => result.item);
+}
+function displayResults(results) {
+      const resultsList = document.getElementById("resultsList");
+      resultsList.innerHTML = "";
+
+      if (results.length === 0) {
+        resultsList.innerHTML = '<li class="no-results">No results found</li>';
+        return;
+      }
+
+      results.forEach(result => {
+        const li = document.createElement("li");
+        li.textContent = result;
+        resultsList.appendChild(li);
+      });
+    }
+var skillset=[
+  "C#","HTML","CSS","Javascript","Typescript","Sass"
+  ,"Asp.net","MS SQL","Mysql","Angular","Git","Azure","Azure devops"
+  ,"JSON","Docker","IIS","TFS","Sitecore","Entity Framework"
+  ,"WPF","Dotnet MAUI","Java","Playwright"
+  ,"Selenium", "Ollama", "Visual Basic .Net", "C","JSP"
+];
+// Handle search
+    function handleSearch() {
+      const query = document.getElementById("searchInput").value.trim();
+
+      if (query === "") {
+        // Show all items if search is empty
+        displayResults(skillset);
+        return;
+      }
+
+      // Try exact search first, then fall back to fuzzy search
+      let results = fuzzySearch(skillset, query);
+
+      displayResults(results);
+    }
+
+    // Event listeners
+    document.getElementById("searchButton").addEventListener("click", handleSearch);
+    document.getElementById("searchInput").addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        handleSearch();
+      }
+    });
+document.addEventListener("DOMContentLoaded", () => {
+      displayResults(skillset);
+    });
+        </script>
+    </head>
+    <body>
+        <div class="form-group">
+    <label for="searchInput">Search Fruits:</label>
+    <input 
+      type="text" 
+      id="searchInput" 
+      placeholder="Enter search term (eg 'java')"
+    >
+    <button id="searchButton">Search</button>
+    <ul id="resultsList"></ul>
+  </div>
+    </body>
+</html>
