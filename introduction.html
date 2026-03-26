@@ -1,170 +1,208 @@
-<html>
-    <head>
-        <title>Nickleus Jimenez</title>
-        <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 500px;
-      margin: 50px auto;
-      padding: 20px;
-      background-color: #f5f5f5;
+  <html>
+      <head>
+          <title>Nickleus Jimenez</title>
+          <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+
+      .form-group {
+        background: url("https://res.cloudinary.com/dsgpobzhr/image/upload/v1774483655/ChicagoRiver_w5nuqj.jpg");
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 14px;
+      }
+
+      input[type="text"]:focus {
+        outline: none;
+        border-color: #4CAF50;
+        box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+      }
+
+      button {
+        width: 100%;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      button:active {
+        background-color: #3d8b40;
+      }
+
+      #resultsList {
+        margin-top: 20px;
+        list-style: none;
+        padding: 0;
+        
+      }
+
+      #resultsList li {
+        padding: 10px;
+        background-color: #e8f5e9;
+        border-left: 4px solid #4CAF50;
+        margin-bottom: 8px;
+        border-radius: 4px;
+      }
+
+      .no-results {
+        color: #999;
+        text-align: center;
+        padding: 20px;
+        font-style: italic;
+      }
+      .other-description {
+        background: url("https://res.cloudinary.com/dsgpobzhr/image/upload/v1774483655/ChicagoRiver_w5nuqj.jpg");
+        background-size: auto;
+        background-size: auto 100%;
+        margin-top: 30px;
+      }
+      .md-20,.md-80 {
+        width: 100%;
+        text-align: justify;
+        padding: 10px;
+      }
+      @media screen and (min-width: 768px) {
+      .md-20 {
+        width: 20%;
+        background-color: rgba(250, 250, 250, 0.73);
+      }
+      .md-80 {
+        width: 80%;
+      }
     }
+    </style>
+          <script type="text/javascript">
+              function fuzzySearch(array, query) {
+    const lowerQuery = query.toLowerCase();
 
-    .form-group {
-      background-color: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
+    return array
+      .map(item => {
+        const lowerItem = item.toLowerCase();
+        let queryIndex = 0;
+        let score = 0;
 
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: bold;
-      color: #333;
-    }
-
-    input[type="text"] {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      box-sizing: border-box;
-      font-size: 14px;
-    }
-
-    input[type="text"]:focus {
-      outline: none;
-      border-color: #4CAF50;
-      box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
-    }
-
-    button {
-      width: 100%;
-      padding: 10px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    button:hover {
-      background-color: #45a049;
-    }
-
-    button:active {
-      background-color: #3d8b40;
-    }
-
-    #resultsList {
-      margin-top: 20px;
-      list-style: none;
-      padding: 0;
-    }
-
-    #resultsList li {
-      padding: 10px;
-      background-color: #e8f5e9;
-      border-left: 4px solid #4CAF50;
-      margin-bottom: 8px;
-      border-radius: 4px;
-    }
-
-    .no-results {
-      color: #999;
-      text-align: center;
-      padding: 20px;
-      font-style: italic;
-    }
-  </style>
-        <script type="text/javascript">
-            function fuzzySearch(array, query) {
-  const lowerQuery = query.toLowerCase();
-
-  return array
-    .map(item => {
-      const lowerItem = item.toLowerCase();
-      let queryIndex = 0;
-      let score = 0;
-
-      for (let i = 0; i < lowerItem.length && queryIndex < lowerQuery.length; i++) {
-        if (lowerItem[i] === lowerQuery[queryIndex]) {
-          score++;
-          queryIndex++;
+        for (let i = 0; i < lowerItem.length && queryIndex < lowerQuery.length; i++) {
+          if (lowerItem[i] === lowerQuery[queryIndex]) {
+            score++;
+            queryIndex++;
+          }
         }
+
+        return { item, score, matched: queryIndex === lowerQuery.length };
+      })
+      .filter(result => result.matched)
+      .sort((a, b) => b.score - a.score)
+      .map(result => result.item);
+  }
+  function displayResults(results) {
+        const resultsList = document.getElementById("resultsList");
+        resultsList.innerHTML = "";
+
+        if (results.length === 0) {
+          resultsList.innerHTML = '<li class="no-results">No results found</li>';
+          return;
+        }
+
+        results.forEach(result => {
+          const li = document.createElement("li");
+          li.textContent = result;
+          resultsList.appendChild(li);
+        });
+      }
+  var skillset=[
+    "C#","HTML","CSS","Javascript","Typescript","Sass"
+    ,"Asp.net","MS SQL","Mysql","Angular","Git","Azure","Azure devops"
+    ,"JSON","Docker","IIS","TFS","Sitecore","Entity Framework"
+    ,"WPF","Dotnet MAUI","Java","Playwright"
+    ,"Selenium", "Ollama", "Visual Basic .Net", "C","JSP"
+  ];
+  // Handle search
+      function handleSearch() {
+        const query = document.getElementById("searchInput").value.trim();
+
+        if (query === "") {
+          // Show all items if search is empty
+          displayResults(skillset);
+          return;
+        }
+
+        // Try exact search first, then fall back to fuzzy search
+        let results = fuzzySearch(skillset, query);
+
+        displayResults(results);
       }
 
-      return { item, score, matched: queryIndex === lowerQuery.length };
-    })
-    .filter(result => result.matched)
-    .sort((a, b) => b.score - a.score)
-    .map(result => result.item);
-}
-function displayResults(results) {
-      const resultsList = document.getElementById("resultsList");
-      resultsList.innerHTML = "";
-
-      if (results.length === 0) {
-        resultsList.innerHTML = '<li class="no-results">No results found</li>';
-        return;
-      }
-
-      results.forEach(result => {
-        const li = document.createElement("li");
-        li.textContent = result;
-        resultsList.appendChild(li);
-      });
-    }
-var skillset=[
-  "C#","HTML","CSS","Javascript","Typescript","Sass"
-  ,"Asp.net","MS SQL","Mysql","Angular","Git","Azure","Azure devops"
-  ,"JSON","Docker","IIS","TFS","Sitecore","Entity Framework"
-  ,"WPF","Dotnet MAUI","Java","Playwright"
-  ,"Selenium", "Ollama", "Visual Basic .Net", "C","JSP"
-];
-// Handle search
-    function handleSearch() {
-      const query = document.getElementById("searchInput").value.trim();
-
-      if (query === "") {
-        // Show all items if search is empty
-        displayResults(skillset);
-        return;
-      }
-
-      // Try exact search first, then fall back to fuzzy search
-      let results = fuzzySearch(skillset, query);
-
-      displayResults(results);
-    }
-
+      
+  document.addEventListener("DOMContentLoaded", () => {
     // Event listeners
-    document.getElementById("searchButton").addEventListener("click", handleSearch);
-    document.getElementById("searchInput").addEventListener("keypress", (e) => {
-      if (e.key === "Enter") {
-        handleSearch();
-      }
-    });
-document.addEventListener("DOMContentLoaded", () => {
-      displayResults(skillset);
-    });
-        </script>
-    </head>
-    <body>
-        <div class="form-group">
-    <label for="searchInput">Search Fruits:</label>
-    <input 
-      type="text" 
-      id="searchInput" 
-      placeholder="Enter search term (eg 'java')"
-    >
-    <button id="searchButton">Search</button>
-    <ul id="resultsList"></ul>
-  </div>
+      document.getElementById("searchButton").addEventListener("click", handleSearch);
+      document.getElementById("searchInput").addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+          handleSearch();
+        }
+      });
+        displayResults(skillset);
+      });
+          </script>
+      </head>
+      <body>
+        <table>
+          <caption><h1>Nickleus Jimenez</h1></caption>
+          <tr>
+            <th>
+              <img width="200" height="200"
+              src="https://res.cloudinary.com/dsgpobzhr/image/upload/fl_preserve_transparency/v1774483979/coffeeDrink_h6iqet.jpg?_s=public-apps"/>
+            </th>
+            <td>
+              Versatile full‑stack .NET developer skilled in C#, ASP.NET, WPF, Angular, Docker & Azure—delivering scalable apps across industries whether in corporate and startup environments. 
+            </td>
+          </tr>
+        </table>
+          <div class="form-group">
+      <label for="searchInput">Skills below:</label>
+      <input 
+        type="text" 
+        id="searchInput" 
+        placeholder="Enter search term (eg 'java')"
+      >
+      <button id="searchButton">Search</button>
+      <ul id="resultsList"></ul>
+    </div>
+    <div class="other-description">
+    <p class="md-20">
+      A versatile and detail-oriented software engineer with deep expertise across modern and legacy technologies, I bring a proven ability to design, build, and optimize applications that are reliable, scalable, and maintainable. My technical toolkit spans C#, ASP.NET Core/MVC, WPF, Entity Framework, and Visual Basic, complemented by strong front-end skills in HTML, CSS, JavaScript, Angular, TypeScript, and XAML. I am equally proficient in backend and infrastructure technologies, including Docker, Hyper-V, Microsoft Azure, Azure DevOps, MySQL, and MS SQL, with hands-on experience in Git-based workflows, JSON data modeling, and Selenium for automated testing. My background also includes working with Java, C, and emerging tools like Ollama, showcasing adaptability to diverse environments. With a track record of delivering secure, efficient, and user-friendly solutions, I thrive in collaborative settings where innovation and precision drive success. 
+    </p>
+    </div>
     </body>
-</html>
+  </html>
