@@ -178,8 +178,7 @@
                 max = min; min = 0;
             }
             return mfloor(min + (max - min) * mrandom());
-        } // intAlea
-        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        }
         function arrayShuffle(array) {
             /* randomly changes the order of items in an array
             only the order is modified, not the elements
@@ -258,9 +257,7 @@ use :
             }
 
             return mmash;
-        } // mMash
-
-        //------------------------------------------------------------------------
+        } 
         async function saveFile(data, fileName) {
 
             if (!("showSaveFilePicker" in window) || window.top !== window.self) { // showSaveFilePicker, use old donload method
@@ -331,11 +328,6 @@ use :
 
         class Modal {
             constructor(properties) {
-
-                // properties : {lines, buttons}
-                // lines : [strings] will be displayed in separate <p> tags
-                // buttons :[{text:string, callback(optional):function}]
-
                 let modal = document.createElement("dialog");
                 modal.style.borderRadius = "5px";
                 if (properties.lines) {
@@ -381,11 +373,7 @@ use :
                 lines: lines, buttons: [{ text: "close" }]
             });
 
-        } // popup
-        //------------------------------------------------------------------------
-        //------------------------------------------------------------------------
-        // User Interface (controls)
-        //------------------------------------------------------------------------
+        } 
         function prepareUI() {
 
             // toggle menu handler
@@ -459,12 +447,7 @@ use :
         }
         //-----------------------------------------------------------------------------
         function makeSaveFileName(src) {
-            /* builds a name suitable for a file (without extension) base on input string.
-            the input string is supposed to be an url with a "http" or "https" protocol, or a text that can reasonably be converted to a filename
-            if it is an url, it is parsed to keep the last portion of its path name (after the last "/")
-            the extension part (after the last "." if any) is stripped
-            this names is copied to the user interface "save name" input field
-            */
+          
             if (URL.canParse(src)) {
                 src = URL.parse(src).pathname;
                 // keep last part of pathname

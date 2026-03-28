@@ -1,0 +1,26 @@
+<div class="container">
+  <h2>Alphabet Transliteration</h2>
+
+  <!-- Radio Controls -->
+  <div class="controls">
+    <label>
+      <input type="radio" name="mapType" value="cyrillic" [(ngModel)]="selectedMap"> Cyrillic
+    </label>
+    <label>
+      <input type="radio" name="mapType" value="greek" [(ngModel)]="selectedMap"> Greek
+    </label>
+  </div>
+
+  <!-- Input Field -->
+  <div class="input-section">
+    <input type="text"
+      [(ngModel)]="inputText" 
+      placeholder="Type English text here..."/>
+  </div>
+
+  <!-- Result Output -->
+  <div class="output-section">
+    <strong>Result:</strong>
+    <p class="result-text">{{ transformedText }}</p>
+  </div>
+</div>
