@@ -3,6 +3,7 @@ import { RomanConverterComponent } from '../RomanNumeral/roman-converter.compone
 import { DiamondComponent } from './diamond/diamond';
 import { CaesarCipherComponent } from './caesar-cipher.component/caesar-cipher.component';
 import { SquareComponent } from '../Squares/square.component';
+import { RodMakerComponent } from '../RodMaker/RodMaker';
 import { JigsawPuzzleComponent } from '../jigsaw-puzzle/jigsaw-puzzle.component';
 import { PhoneticMapper } from '../MappedEnglish/MappedEnglish.component';
 import {Navigated} from '../navigated/navigated';
@@ -10,6 +11,7 @@ export const routes: Routes = [
     {path: '', component: RomanConverterComponent },
     {path: 'diamond', component: DiamondComponent },
     {path: 'square', component: SquareComponent },
+    {path: 'rod', component: RodMakerComponent },
     {path: 'jigsaw', component: JigsawPuzzleComponent },
     {path: 'Phonetic', component: PhoneticMapper },
     {path: 'navigated', component: Navigated },

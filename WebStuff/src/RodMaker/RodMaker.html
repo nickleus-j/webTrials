@@ -1,0 +1,26 @@
+<div class="container">
+  <h2>Rod ASCII Art Generator</h2>
+
+  <div class="control-group">
+    <p class="center-text">
+      <select [(ngModel)]="selectedLength" class="dropdown">
+        @for (size of sizes; track size) {
+            <option [value]="size">{{ size }}</option>
+        }
+      </select>
+      <label>X</label>
+      <select [(ngModel)]="selectedWidth" class="dropdown">
+          @for (size of sizes; track size) {
+                <option [value]="size">{{ size }}</option>
+          }
+        </select>
+    </p>
+     <a (click)="generateBlocks()" class="generate-btn">Generate</a>
+  </div>
+@if(this.rodArt){
+<div class="result center-text">
+    <pre >{{ rodArt }}</pre>
+  </div>
+}
+  
+</div>
