@@ -9,7 +9,7 @@ import { NavListing } from './NavSelection/NavListing';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('WebStuff');
+  protected readonly title = signal('Practice components and routing');
   navItems = signal<NavItem[]>([
     new NavItem('Home', '/'),
     new NavItem('Diamond Generator', '/diamond'),

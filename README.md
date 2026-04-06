@@ -9,7 +9,6 @@ Experiments and prototypes for working with **web pages, components, and front�
 ## 📂 Project Structure
 - **`WebStuff/`** – Angular project containing component experiments (e.g., diamond component styling).
 - **`introduction.html`** – Standalone HTML introduction page.
-- **`.DS_Store`** – Local system file (can be ignored).
 
 ---
 
