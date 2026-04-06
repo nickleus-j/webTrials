@@ -6,18 +6,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'nav-listing',
   imports: [CommonModule, FormsModule],
-  template: `<div class="nav-listing">
-  <select class="nav-dropdown" [(ngModel)]="selectedItem">
-@for (item of navItems; track item.Title) {
-  <option value="{{ item.Path }}">{{ item.Title }}</option>
-}
-  </select>
-  <a class="btn" (click)="navigate()">Go</a>
-</div>
-  `,
-  styles: `.btn{background-color: #483; color: white; padding: 5px; border: 0px;  font-size: large;cursor: pointer;}
-  .nav-dropdown{padding: 5px; border: 1px solid #ccc; border-radius: 4px; font-size: large;}`,
-  //styleUrls: ['./jigsaw-puzzle.component.css']
+  templateUrl: './NavListing.html',
+  styleUrls: ['./NavListing.css']
 })
 export class NavListing implements AfterViewInit {
   @Input() navItems: NavItem[] = [];
@@ -27,7 +17,7 @@ export class NavListing implements AfterViewInit {
     this._router = router;
 }
   ngAfterViewInit() {
-    this.selectedItem = this._router.url;
+    //this.selectedItem = this.navItems[0]?.Path || null;
   }
   navigate() {
     if(this.selectedItem)

@@ -1,0 +1,15 @@
+.btn {
+	background-color: #483;
+	color: white;
+	padding: 5px;
+	border: 0px;
+	font-size: large;
+	cursor: pointer;
+}
+
+.nav-dropdown {
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: large;
+}

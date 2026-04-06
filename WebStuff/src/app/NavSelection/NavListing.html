@@ -1,0 +1,8 @@
+<div class="nav-listing">
+  <select class="nav-dropdown" [(ngModel)]="selectedItem">
+@for (item of navItems; track item.Title) {
+  <option value="{{ item.Path }}">{{ item.Title }}</option>
+}
+  </select>
+  <a class="btn" (click)="navigate()">Go</a>
+</div>

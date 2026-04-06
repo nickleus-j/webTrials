@@ -8,14 +8,16 @@
             <option [value]="size">{{ size }}</option>
         }
       </select>
-      <label>X</label>
+      <strong>X</strong>
       <select [(ngModel)]="selectedWidth" class="dropdown">
           @for (size of sizes; track size) {
                 <option [value]="size">{{ size }}</option>
           }
         </select>
+        
+        <a (click)="generateBlocks()" class="generate-btn">Generate</a>
     </p>
-     <a (click)="generateBlocks()" class="generate-btn">Generate</a>
+     
   </div>
 @if(this.rodArt){
 <div class="result center-text">
