@@ -18,6 +18,7 @@ export class App {
     new NavItem('Rod Maker', '/rod'),
     new NavItem('Streetmap Sample', 'navigated'),
     new NavItem('Caesar Cipher', 'caesar-cipher'),
+    new NavItem('Tic Tac Toe', 'ttt'),
     new NavItem('Phonetic Mapping', '/Phonetic')
   ]);
   

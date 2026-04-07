@@ -7,6 +7,8 @@ import { RodMakerComponent } from '../RodMaker/RodMaker';
 import { JigsawPuzzleComponent } from '../jigsaw-puzzle/jigsaw-puzzle.component';
 import { PhoneticMapper } from '../MappedEnglish/MappedEnglish.component';
 import {Navigated} from '../navigated/navigated';
+import { TicTacToeComponent } from '../tictactoe/tictactoe';
+
 export const routes: Routes = [
     {path: '', component: RomanConverterComponent },
     {path: 'diamond', component: DiamondComponent },
@@ -15,5 +17,6 @@ export const routes: Routes = [
     {path: 'jigsaw', component: JigsawPuzzleComponent },
     {path: 'Phonetic', component: PhoneticMapper },
     {path: 'navigated', component: Navigated },
+    {path: 'ttt', component: TicTacToeComponent },
     {path: 'caesar-cipher', component: CaesarCipherComponent }
 ];

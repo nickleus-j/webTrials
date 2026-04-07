@@ -1,0 +1,21 @@
+<div class="tic-tac-toe-container">
+  <h1>Tic Tac Toe</h1>
+  
+  <div class="status">
+    {{ statusMessage }}
+  </div>
+
+  <div class="board">
+    <button 
+      *ngFor="let cell of board; let i = index"
+      class="cell"
+      [class.x]="cell === 'X'"
+      [class.o]="cell === 'O'"
+      [disabled]="winner || gameOver || cell !== null"
+      (click)="makeMove(i)">
+      {{ cell }}
+    </button>
+  </div>
+
+  <button class="reset-btn" (click)="resetGame()">Reset Game</button>
+</div>
