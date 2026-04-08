@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 @Component({
-  selector: 'app-tic-tac-toe',
+  selector: 'tic-tac-toe',
   imports: [CommonModule],
   templateUrl: './tictactoe.html',
   styleUrls: ['./tictactoe.css']
@@ -60,9 +60,7 @@ export class TicTacToeComponent {
       }
     }
 
-    if (this.board.every(cell => cell !== null)) {
-      this.gameOver = true;
-    }
+    this.gameOver = this.board.every(cell => cell !== null);
   }
 
   resetGame(): void {
