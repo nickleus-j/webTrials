@@ -1,14 +1,16 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ListBox } from '../app/ListBox.component/listbox.component';
 
 @Component({
   selector: 'PhoneticMapper',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ListBox],
   templateUrl: './MappedEnglish.component.html',
   styleUrls: ['./MappedEnglish.component.css']
 })
+
 export class PhoneticMapper {
   @Input() inputText: string = '';
   selectedMap: 'cyrillic' | 'greek' = 'cyrillic';

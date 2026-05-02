@@ -1,0 +1,16 @@
+<div class="form-group">
+    <label for="searchInput">{{ searchLabel }}</label>
+      <input 
+        type="text" 
+        id="searchInput" 
+        placeholder="Enter search term "
+        class="input-field"
+        [(ngModel)]="this.searchTerm"
+      >
+      <button id="searchButton" (click)="searchFromLabels()">Search</button>
+      <ul id="resultsList">
+        @for (item of labels; track item) {
+        <li>{{ item }}</li>
+        }
+      </ul>
+</div>

@@ -3,6 +3,6 @@ var skillset = [
         "Asp.net", "MS SQL", "Mysql", "Angular", "Git", "Azure", "Azure devops",
         "JSON", "Docker", "IIS", "TFS", "Sitecore", "Entity Framework",
         "WPF", "Dotnet MAUI", "Java", "Playwright", "Latex", "Confluence",
-        "Selenium", "Ollama", "Visual Basic .Net", "C", "JSP", "Markdown"
+        "Selenium", "Ollama", "Visual Basic .Net", "C", "JSP", "Markdown","Jira"
         ,"XML", "XAML", "Hyper-V","Powershell", "Bash", "Linux", "Windows Server"
       ];
