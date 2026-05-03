@@ -13,13 +13,12 @@ export class ListBox implements AfterViewInit {
     @Input() searchLabel: string = '';
     @Input()searchTerm: string = '';
     @Input() labels: string[] = [];
+    mappedLabels: string[] = [];
   selectedItem:string | null = null;
   constructor() {
-    
+    this.mappedLabels=this.labels;
   }
-  ngAfterViewInit() {
-    //this.selectedItem = this.navItems[0]?.Path || null;
-  }
+  ngAfterViewInit() {}
   fuzzySearch(array: string[], query: string) {
         const lowerQuery = query.toLowerCase();
 
@@ -42,23 +41,23 @@ export class ListBox implements AfterViewInit {
           .sort((a, b) => b.score - a.score)
           .map(result => result.item);
     }
-     displayResults(results:string[]) {
-        const resultsList = document.getElementById("resultsList");
-        if(!resultsList) return;
-        resultsList.innerText = "";
+    displayResults(results:string[]) {
+      const resultsList = document.getElementById("resultsList");
+      if(!resultsList) return;
+      resultsList.innerText = "";
 
-        if (results.length === 0) {
-          resultsList.innerHTML = '<li class="no-results">No results found</li>';
-          return;
-        }
-
-        results.forEach(result => {
-          const li = document.createElement("li");
-          li.textContent = result;
-          resultsList.appendChild(li);
-        });
+      if (results.length === 0) {
+        resultsList.innerHTML = '<li class="no-results">No results found</li>';
+        return;
       }
-searchFromLabels() {
+
+      results.forEach(result => {
+        const li = document.createElement("li");
+        li.textContent = result;
+        resultsList.appendChild(li);
+      });
+    }
+  searchFromLabels() {
      this.displayResults(this.fuzzySearch(this.labels, this.searchTerm));
-}
+  }
 }

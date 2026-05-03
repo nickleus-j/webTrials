@@ -1,9 +1,9 @@
 label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: bold;
-        color: #000;
-      }
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #000;
+}
 
 input[type="text"] {
     width: 100%;
@@ -13,7 +13,7 @@ input[type="text"] {
     border-radius: 4px;
     box-sizing: border-box;
     font-size: 14px;
-    }
+}
 
 input[type="text"]:focus {
     outline: none;
@@ -42,16 +42,16 @@ button:active {
     background-color: #3d8b40;
     }
 
-#resultsList {
+#resultsList{
     margin-top: 20px;
     list-style: none;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 10px;
-    }
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+}
 
-#resultsList li {
+#resultsList li{
     padding: 12px;
     background-color: #e8f5e9;
     border-left: 4px solid #4CAF50;
@@ -67,9 +67,6 @@ button:active {
     font-style: italic;
     grid-column: 1 / -1;
     }
-#resultsList {
-          grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        }
 .form-group {
     background: #6273CA;
     background-size: cover;

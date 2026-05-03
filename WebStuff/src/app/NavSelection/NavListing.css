@@ -1,12 +1,21 @@
 .btn {
-	background-color: #483;
+	background-color:#66C977;
 	color: white;
 	padding: 5px;
 	border: 0px;
 	font-size: large;
+	border: none;
+	border-radius: 5px;
 	cursor: pointer;
+	font-weight: bold;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
-
+.btn:hover {
+  background-color: #33885A;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
 .nav-dropdown {
 	padding: 5px;
 	border: 1px solid #ccc;

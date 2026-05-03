@@ -9,8 +9,8 @@
       >
       <button id="searchButton" (click)="searchFromLabels()">Search</button>
       <ul id="resultsList">
-        @for (item of labels; track item) {
-        <li>{{ item }}</li>
+        @for (item of this.labels; track item) {
+          <li>{{ item }}</li>
         }
       </ul>
 </div>
