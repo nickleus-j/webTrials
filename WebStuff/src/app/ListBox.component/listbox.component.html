@@ -6,7 +6,7 @@
         placeholder="Enter search term "
         class="input-field"
         [(ngModel)]="this.searchTerm"
-      >
+        (keydown.enter)="searchFromLabels()">
       <button id="searchButton" (click)="searchFromLabels()">Search</button>
       <ul id="resultsList">
         @for (item of this.labels; track item) {
