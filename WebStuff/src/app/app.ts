@@ -19,6 +19,7 @@ export class App {
     new NavItem('Streetmap Sample', 'navigated'),
     new NavItem('Caesar Cipher', 'caesar-cipher'),
     new NavItem('Tic Tac Toe', 'ttt'),
+    new NavItem('Periodic Table', 'periodic-table'),
     new NavItem('Phonetic Mapping', '/Phonetic')
   ]);
   

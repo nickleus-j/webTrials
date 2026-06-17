@@ -8,6 +8,7 @@ import { JigsawPuzzleComponent } from '../jigsaw-puzzle/jigsaw-puzzle.component'
 import { PhoneticMapper } from '../MappedEnglish/MappedEnglish.component';
 import {Navigated} from '../navigated/navigated';
 import { TicTacToeComponent } from '../tictactoe/tictactoe';
+import { PeriodicTableComponent } from '../elements/periodicelement';
 
 export const routes: Routes = [
     {path: '', component: RomanConverterComponent },
@@ -18,5 +19,6 @@ export const routes: Routes = [
     {path: 'Phonetic', component: PhoneticMapper },
     {path: 'navigated', component: Navigated },
     {path: 'ttt', component: TicTacToeComponent },
-    {path: 'caesar-cipher', component: CaesarCipherComponent }
+    {path: 'caesar-cipher', component: CaesarCipherComponent },
+    {path: 'periodic-table', component: PeriodicTableComponent }
 ];
