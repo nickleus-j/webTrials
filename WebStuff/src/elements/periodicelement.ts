@@ -1,12 +1,13 @@
-import { Component, AfterViewInit, Input, ElementRef, inject, Injectable } from '@angular/core';
+import { Component, AfterViewInit, Input, ElementRef, inject, Injectable,ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { ListBox } from '../app/ListBox.component/listbox.component';
 @Component({
   selector: 'periodic-table',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ListBox],
   templateUrl: './periodictable.component.html',
-  styleUrls: ['./periodictable.component.css']
+  styleUrls: ['./periodictable.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class PeriodicTableComponent {
   periodicTable:any= {
@@ -145,5 +146,8 @@ export class PeriodicTableComponent {
     "Noble Gas": ["Group 18"],
     "Lanthanide": ["Atomic numbers 57-71"],
     "Actinide": ["Atomic numbers 89-103"]
+  }
+  get elementLabels(): string[] {
+    return this.periodicTable.elements.map((el: any) => el.name);
   }
 }

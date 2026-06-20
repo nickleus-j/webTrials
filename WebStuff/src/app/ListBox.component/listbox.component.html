@@ -9,7 +9,7 @@
         (keydown.enter)="searchFromLabels()">
       <button id="searchButton" (click)="searchFromLabels()">Search</button>
       <ul id="resultsList">
-        @for (item of this.labels; track item) {
+        @for (item of this.filteredLabels; track item) {
           <li>{{ item }}</li>
         }
       </ul>

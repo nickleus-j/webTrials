@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, Input, ElementRef, inject, Injectable } from '@angular/core';
+import { Component, AfterViewInit, Input, ElementRef, inject, Injectable, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -13,12 +13,16 @@ export class ListBox implements AfterViewInit {
     @Input() searchLabel: string = '';
     @Input()searchTerm: string = '';
     @Input() labels: string[] = [];
+   
     mappedLabels: string[] = [];
+    filteredLabels: string[] = this.mappedLabels;
   selectedItem:string | null = null;
-  constructor() {
+  constructor(private cdr: ChangeDetectorRef) {
     this.mappedLabels=this.labels;
   }
-  ngAfterViewInit() {}
+  ngAfterViewInit() {
+    this.filteredLabels = this.labels.concat(); 
+  }
   fuzzySearch(array: string[], query: string) {
       let lowerQuery = query.toLowerCase();
 
@@ -58,6 +62,8 @@ export class ListBox implements AfterViewInit {
     });
   }
   searchFromLabels() {
-     this.displayResults(this.fuzzySearch(this.labels, this.searchTerm));
+    this.filteredLabels = this.fuzzySearch(this.labels, this.searchTerm);
+     //this.displayResults(this.fuzzySearch(this.labels, this.searchTerm));
+     this.cdr.detectChanges();
   }
 }
