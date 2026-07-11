@@ -4,7 +4,8 @@
         <sub>{{periodicTable.lastUpdated}}</sub>
         
     </div>
-    <list-box [labels]="elementLabels" searchLabel="Search Mapped Characters:"></list-box>
+   
     <main class="element">
 
     </main>
+    <element-card *ngFor="let element of periodicTable.elements" [element]="element"></element-card>

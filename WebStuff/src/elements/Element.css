@@ -1,0 +1,73 @@
+.element-tile {
+      width: 20%;
+      max-width: 200px;
+      min-height: 200px;
+      padding: 12px;
+      border: 2px solid #232323;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+      float: left;
+    }
+
+    .element-tile:hover {
+      transform: translateY(-4px);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      font-size: 14px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    .symbol {
+      text-align: center;
+      font-size: 64px;
+      font-weight: 800;
+      line-height: 1;
+      color: #111;
+    }
+
+    .footer {
+      text-align: center;
+    }
+
+    .name {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .mass {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .location {
+      font-size: 11px;
+      color: #888;
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+
+    /* Category colors for dynamic styling */
+    .nonmetal {
+      background-color: #e0f7fa;
+      border-color: #00bcd4;
+    }
+    .noble-gas {
+      background-color: #f3e5f5;
+      border-color: #9c27b0;
+    }
+    .alkali-metal {
+      background-color: #ffebee;
+      border-color: #f44336;
+    }

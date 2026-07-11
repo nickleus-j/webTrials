@@ -1,0 +1,14 @@
+<div class="element-tile" [ngClass]="element.category.toLowerCase()">
+      <div class="header">
+        <span class="atomic-number">{{ element.atomicNumber }}</span>
+        <span class="category">{{ element.category }}</span>
+      </div>
+      
+      <div class="symbol">{{ element.symbol }}</div>
+      
+      <div class="footer">
+        <div class="name">{{ element.name }}</div>
+        <div class="mass">{{ element.atomicMass }}</div>
+        <div class="location">Group {{ element.group }} | Period {{ element.period }}</div>
+      </div>
+</div>

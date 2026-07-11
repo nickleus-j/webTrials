@@ -2,9 +2,20 @@ import { Component, AfterViewInit, Input, ElementRef, inject, Injectable,ViewEnc
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ListBox } from '../app/ListBox.component/listbox.component';
+import {ElementCardComponent} from '../elements/Element';
+
+export interface PeriodicElement {
+  atomicNumber: number;
+  symbol: string;
+  name: string;
+  atomicMass: number;
+  group: number;
+  period: number;
+  category: string;
+}
 @Component({
   selector: 'periodic-table',
-  imports: [CommonModule, FormsModule, ListBox],
+  imports: [CommonModule, FormsModule, ListBox, ElementCardComponent],
   templateUrl: './periodictable.component.html',
   styleUrls: ['./periodictable.component.css'],
   encapsulation: ViewEncapsulation.None
