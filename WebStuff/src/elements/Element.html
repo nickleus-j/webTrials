@@ -1,4 +1,4 @@
-<div class="element-tile" [ngClass]="element.category.toLowerCase()">
+<div class="element-tile" [ngClass]="element.category.replaceAll(' ', '-').toLowerCase()">
       <div class="header">
         <span class="atomic-number">{{ element.atomicNumber }}</span>
         <span class="category">{{ element.category }}</span>

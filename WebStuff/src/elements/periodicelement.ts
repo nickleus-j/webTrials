@@ -15,7 +15,7 @@ export interface PeriodicElement {
 }
 @Component({
   selector: 'periodic-table',
-  imports: [CommonModule, FormsModule, ListBox, ElementCardComponent],
+  imports: [CommonModule, FormsModule, ElementCardComponent],
   templateUrl: './periodictable.component.html',
   styleUrls: ['./periodictable.component.css'],
   encapsulation: ViewEncapsulation.None
