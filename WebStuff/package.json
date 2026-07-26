@@ -7,6 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "postbuild": "html-minifier --input-dir <BUILD-DIR> --output-dir <BUILD-DIR> --file-ext html <OPTIONS>",
     "serve:ssr:WebStuff": "node dist/WebStuff/server/server.mjs"
   },
   "prettier": {
