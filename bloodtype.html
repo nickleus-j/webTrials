@@ -1,0 +1,280 @@
+<html>
+    <head>
+        <script type="text/javascript">
+            var bloodCompatability={
+  "blood_compatibility": [
+    {
+      "blood_type": "O-",
+      "can_donate_to": ["O-", "O+", "A-", "A+", "B-", "B+", "AB-", "AB+"],
+      "can_receive_from": ["O-"]
+    },
+    {
+      "blood_type": "O+",
+      "can_donate_to": ["O+", "A+", "B+", "AB+"],
+      "can_receive_from": ["O-", "O+"]
+    },
+    {
+      "blood_type": "A-",
+      "can_donate_to": ["A-", "A+", "AB-", "AB+"],
+      "can_receive_from": ["O-", "A-"]
+    },
+    {
+      "blood_type": "A+",
+      "can_donate_to": ["A+", "AB+"],
+      "can_receive_from": ["O-", "O+", "A-", "A+"]
+    },
+    {
+      "blood_type": "B-",
+      "can_donate_to": ["B-", "B+", "AB-", "AB+"],
+      "can_receive_from": ["O-", "B-"]
+    },
+    {
+      "blood_type": "B+",
+      "can_donate_to": ["B+", "AB+"],
+      "can_receive_from": ["O-", "O+", "B-", "B+"]
+    },
+    {
+      "blood_type": "AB-",
+      "can_donate_to": ["AB-", "AB+"],
+      "can_receive_from": ["O-", "A-", "B-", "AB-"]
+    },
+    {
+      "blood_type": "AB+",
+      "can_donate_to": ["AB+"],
+      "can_receive_from": ["O-", "O+", "A-", "A+", "B-", "B+", "AB-", "AB+"]
+    }
+  ]
+}
+function generateBloodTypeTable(jsonData) {
+    const container = document.createElement('div');
+    container.className = 'blood-compatibility-container';
+
+    const title = document.createElement('h1');
+    title.className = 'blood-compatibility-title';
+    title.textContent = '🩸 Blood Type Compatibility Chart';
+    container.appendChild(title);
+
+    const donateTitle = document.createElement('h2');
+    donateTitle.className = 'blood-compatibility-section-title';
+    donateTitle.textContent = 'Can Donate To';
+    container.appendChild(donateTitle);
+
+    const donateTable = createTable(jsonData.blood_compatibility, 'can_donate_to', 'O-');
+    container.appendChild(donateTable);
+
+    const receiveTitle = document.createElement('h2');
+    receiveTitle.className = 'blood-compatibility-section-title';
+    receiveTitle.textContent = 'Can Receive From';
+    container.appendChild(receiveTitle);
+
+    const receiveTable = createTable(jsonData.blood_compatibility, 'can_receive_from', 'AB+');
+    container.appendChild(receiveTable);
+
+    return container;
+}
+
+function createTable(data, property, specialType) {
+    const table = document.createElement('table');
+    table.className = 'blood-compatibility-table';
+
+    const thead = document.createElement('thead');
+    const headerRow = document.createElement('tr');
+
+    const th1 = document.createElement('th');
+    th1.textContent = 'Blood Type';
+
+    const th2 = document.createElement('th');
+    th2.textContent = property.replaceAll('_', ' ');
+    th2.textContent = th2.textContent.replace(/([a-z])([A-Z])/g, '$1 $2');
+
+    headerRow.appendChild(th1);
+    headerRow.appendChild(th2);
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    const tbody = document.createElement('tbody');
+
+    data.forEach(item => {
+        const row = document.createElement('tr');
+
+        const typeCell = document.createElement('td');
+        typeCell.className = 'blood-type-cell';
+        typeCell.textContent = item.blood_type;
+
+        const compatCell = document.createElement('td');
+
+        const badgesDiv = document.createElement('div');
+        badgesDiv.className = 'blood-badges';
+
+        item[property].forEach(type => {
+            const badge = document.createElement('span');
+            badge.className = 'blood-badge';
+            badge.textContent = type;
+            badgesDiv.appendChild(badge);
+        });
+
+        compatCell.appendChild(badgesDiv);
+
+        if (item.blood_type === specialType) {
+            const label = document.createElement('p');
+            label.className = 'blood-universal-label';
+            label.textContent = specialType === 'O-' ? '✓ Universal Donor' : '✓ Universal Recipient';
+            compatCell.appendChild(label);
+        }
+
+        row.appendChild(typeCell);
+        row.appendChild(compatCell);
+        tbody.appendChild(row);
+    });
+
+    table.appendChild(tbody);
+    return table;
+}
+const table = generateBloodTypeTable(bloodCompatability);
+window.addEventListener('load', () => {
+    document.body.appendChild(table);
+});
+
+        </script>
+        <Title>Blood Type</Title>
+        <style>
+ .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #c41e3a;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        th {
+            background-color: #c41e3a;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        .blood-type {
+            font-weight: bold;
+            color: #c41e3a;
+            font-size: 16px;
+            min-width: 80px;
+        }
+        .compatibility-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .badge {
+            background-color: #e8f4f8;
+            border: 1px solid #c41e3a;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .universal {
+            font-style: italic;
+            color: #c41e3a;
+            font-size: 12px;
+            margin-top: 6px;
+        }
+        .blood-compatibility-container {
+        font-family: Arial, sans-serif;
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    .blood-compatibility-title {
+        color: #c41e3a;
+        text-align: center;
+    }
+
+    .blood-compatibility-section-title {
+        color: #333;
+        margin-top: 30px;
+    }
+
+    .blood-compatibility-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 30px;
+    }
+
+    .blood-compatibility-table thead tr {
+        background-color: #c41e3a;
+        color: white;
+    }
+
+    .blood-compatibility-table th {
+        padding: 12px;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    .blood-compatibility-table td {
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .blood-compatibility-table tbody tr {
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    .blood-compatibility-table tbody tr:hover {
+        background-color: #f9f9f9;
+    }
+
+    .blood-type-cell {
+        font-weight: bold;
+        color: #c41e3a;
+        font-size: 16px;
+    }
+
+    .blood-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .blood-badge {
+        background-color: #e8f4f8;
+        border: 1px solid #c41e3a;
+        padding: 6px 10px;
+        border-radius: 4px;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    .blood-universal-label {
+        color: #c41e3a;
+        font-size: 12px;
+        font-style: italic;
+        margin-top: 6px;
+        margin-bottom: 0;
+    }
+        </style>
+    </head>
+    <body>
+
+    </body>
+</html>
