@@ -504,9 +504,6 @@ use :
         const helpfiletext = ["This method stores the saved game in your download folder. Use the \"save name\" field to save different games with different names.",
             "On some devices, you are not limited to the download folder: you will be prompted for the destination folder and name.",
         ];
-        //------------------------------------------------------------------------
-        //------------------------------------------------------------------------
-
         function getTransformMatrix(orgx, orgy, scale, rot, destx, desty) {
 
             const rotMatrices = [, new DOMMatrix([0, 1, -1, 0, 0, 0]),
@@ -517,7 +514,6 @@ use :
             mat.scaleSelf(scale, scale);
             return mat.translateSelf(-orgx, -orgy);
         } //
-        //-----------------------------------------------------------------------------
         // one side of a piece
         class Side {
             constructor() {
@@ -525,7 +521,6 @@ use :
                 this.points = []; // real points or Bezier curve points
             } // Side
 
-            //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
             reversed() {
                 // returns a new Side, copy of current one but reversed
                 const ns = new Side();
@@ -533,8 +528,6 @@ use :
                 ns.points = this.points.slice().reverse();
                 return ns;
             } // Side.reversed
-
-            //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
             /*
             draws the path corresponding to a side
