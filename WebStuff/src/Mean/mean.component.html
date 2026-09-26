@@ -1,0 +1,17 @@
+<h1>Mean</h1>
+<p>Enter Numbers Below: </p>
+<div class="number-box-container">
+  <input  *ngFor="let num of NumbersGiven; let i = index; trackBy: trackByIndex"
+      type="number" 
+      [(ngModel)]="NumbersGiven[i]" 
+      (ngModelChange)="onValueChange()"
+      placeholder="#"
+      class="number-input"
+    />
+</div>
+
+<!-- Debug helper to see the real-time data structure -->
+<p><strong>Current Array Structure:</strong> {{ NumbersGiven | json }}</p>
+<p><strong>Cleaned Array for API:</strong> {{ getCleanedArray() | json }}</p>
+<h2>Mean</h2>
+{{NumbersGiven.reduce((sum, num) => sum + num, 0) / NumbersGiven.length-1}}

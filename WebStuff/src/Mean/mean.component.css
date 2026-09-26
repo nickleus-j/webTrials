@@ -1,0 +1,6 @@
+.number-box-container input[type="number"] {
+    
+    margin-right: 10px;
+    padding: 5px;
+    font-size: 16px;
+}
