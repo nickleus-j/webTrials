@@ -9,6 +9,7 @@ import { PhoneticMapper } from '../MappedEnglish/MappedEnglish.component';
 import {Navigated} from '../navigated/navigated';
 import { TicTacToeComponent } from '../tictactoe/tictactoe';
 import { PeriodicTableComponent } from '../elements/periodicelement';
+import { MeanComponent } from '../Mean/mean.component';
 
 export const routes: Routes = [
     {path: '', component: RomanConverterComponent },
@@ -20,5 +21,6 @@ export const routes: Routes = [
     {path: 'navigated', component: Navigated },
     {path: 'ttt', component: TicTacToeComponent },
     {path: 'caesar-cipher', component: CaesarCipherComponent },
+    {path: 'mean', component: MeanComponent },
     {path: 'periodic-table', component: PeriodicTableComponent }
 ];
