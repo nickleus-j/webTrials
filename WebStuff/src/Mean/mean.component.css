@@ -1,4 +1,11 @@
 
+.number-box-container {
+    margin: 50px auto;
+  padding: 40px;
+  background: linear-gradient( 120deg, #80EbDF 0%, #409bAF 100%);
+  border-radius: 7px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
 .number-box-container input[type="number"] {
     font-family: Consolas, sans-serif;
     margin-right: 10px;

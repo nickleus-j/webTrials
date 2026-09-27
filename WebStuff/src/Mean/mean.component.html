@@ -10,12 +10,11 @@
     />
 </div>
 
-<!-- Debug helper to see the real-time data structure -->
 <p><strong>Current Array Structure:</strong> {{ NumbersGiven | json }}</p>
-<p><strong>Cleaned Array for API:</strong> {{ getCleanedArray() | json }}</p>
+<p><strong>Cleaned Array for API:</strong> {{ GetCleanedArray() | json }}</p>
 <h2>Mean of Cleaned Array</h2>
-{{NumbersGiven.reduce((sum, num) => sum + num, 0) / this.getCleanedArray().length}}
-<h2>Standard Deviation of Cleaned Array</h2>
+{{NumbersGiven.reduce((sum, num) => sum + num, 0) / this.GetCleanedArray().length}}
+<h2>Standard Deviation of Cleaned Array(No Zero[0])</h2>
 <h3>
-  {{ standardDeviation() | number:'1.2-2' }}
+  {{ CalculateStandardDeviation() | number:'1.2-2' }}
 </h3>

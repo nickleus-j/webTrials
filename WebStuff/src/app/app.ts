@@ -20,6 +20,7 @@ export class App {
     new NavItem('Caesar Cipher', 'caesar-cipher'),
     new NavItem('Tic Tac Toe', 'ttt'),
     new NavItem('Periodic Table', 'periodic-table'),
+    new NavItem('Mean', 'mean'),
     new NavItem('Phonetic Mapping', '/Phonetic')
   ]);
   
