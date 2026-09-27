@@ -30,6 +30,7 @@ export class MeanComponent implements AfterViewInit {
    * Optional: Cleans up the array for API submission by removing empty entries.
    */
   GetCleanedArray(): number[] {
+
     return this.NumbersGiven.filter((val): val is number => val !== null && val !== undefined && val !== 0);
   }
   trackByIndex(index: number, item: any): number {
@@ -41,4 +42,5 @@ export class MeanComponent implements AfterViewInit {
     const variance = cleanedArray.reduce((sum, num) => sum + Math.pow(num - mean, 2), 0) / cleanedArray.length;
     return Math.sqrt(variance);
   }
+
 }
