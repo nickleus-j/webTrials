@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blooming Rose Canvas Animation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0b0c10;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: sans-serif;
+        }
+        canvas {
+            background: radial-gradient(circle, #1a1c23 0%, #07080a 100%);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+            cursor: pointer;
+        }
+        .instruction {
+            position: absolute;
+            bottom: 20px;
+            color: #666;
+            font-size: 14px;
+            letter-spacing: 1px;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="roseCanvas"></canvas>
+    <div class="instruction">Click anywhere to replant and bloom a new rose</div>
+
+    <script>
+        const canvas = document.getElementById('roseCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Set canvas sizing
+        const size = Math.min(window.innerWidth, window.innerHeight) * 0.85;
+        canvas.width = size;
+        canvas.height = size;
+
+        let animationFrameId;
+        let globalAge = 0;
+        let petals = [];
+
+        // Petal Class Blueprint
+        class Petal {
+            constructor(layer, totalLayers, angleIndex, petalsInLayer) {
+                this.layer = layer; // 0 = innermost center, higher = outer layers
+                
+                // Distribute petals evenly in a circle with a slight organic spiral offset
+                const angleSpread = (Math.PI * 2) / petalsInLayer;
+                this.angle = angleIndex * angleSpread + (layer * 0.15); 
+                
+                // Growth pacing configuration
+                this.bloomDelay = (totalLayers - layer) * 25; // Outer petals bloom first, or center outwards
+                // Reverse the math below if you want center-outwards blooming:
+                this.bloomDelay = layer * 35; 
+
+                this.maxSize = 30 + (layer * 14); // Outer layers are progressively larger
+                this.currentSize = 0;
+                this.age = 0;
+                
+                // Color properties (Deep crimson core transitioning to vibrant pink/red outer edges)
+                this.hue = 345 + (layer * 1.5); 
+                this.saturation = 85 + (layer * 1.5);
+                this.lightness = 12 + (layer * 3.5); // Center is deep/dark, edges are bright
+            }
+
+            update() {
+                globalAge++;
+                if (globalAge < this.bloomDelay) return;
+
+                this.age++;
+                // Smooth easing calculation for biological growth acceleration/deceleration
+                const progress = Math.min(this.age / 120, 1); 
+                const ease = 1 - Math.pow(1 - progress, 3); // Cubic ease-out
+                
+                this.currentSize = this.maxSize * ease;
+            }
+
+            draw() {
+                if (this.currentSize === 0) return;
+
+                ctx.save();
+                // Move origin to the center of the canvas
+                ctx.translate(canvas.width / 2, canvas.height / 2);
+                // Rotate canvas to match the specific alignment layout of this petal
+                ctx.rotate(this.angle);
+
+                // Create a beautiful radial gradient unique to each petal for realistic lighting
+                const gradient = ctx.createRadialGradient(0, 0, 0, 0, -this.currentSize, this.currentSize);
+                gradient.addColorStop(0, `hsl(${this.hue}, ${this.saturation}%, ${this.lightness - 5}%)`);
+                gradient.addColorStop(0.5, `hsl(${this.hue}, ${this.saturation}%, ${this.lightness}%)`);
+                gradient.addColorStop(1, `hsl(${this.hue - 10}, ${this.saturation + 5}%, ${this.lightness + 10}%)`);
+
+                ctx.fillStyle = gradient;
+                ctx.strokeStyle = `hsl(${this.hue}, ${this.saturation}%, ${this.lightness - 8}%)`;
+                ctx.lineWidth = 0.5;
+
+                // Begin drawing individual petal geometry via bezier curves
+                ctx.beginPath();
+                ctx.moveTo(0, 0); // Start at base of the flower stem center
+
+                // Left wing curve of the petal
+                ctx.bezierCurveTo(
+                    -this.currentSize * 0.8, -this.currentSize * 0.3, 
+                    -this.currentSize * 0.7, -this.currentSize * 1.1, 
+                    0, -this.currentSize
+                );
+
+                // Right wing curve of the petal
+                ctx.bezierCurveTo(
+                    this.currentSize * 0.7, -this.currentSize * 1.1, 
+                    this.currentSize * 0.8, -this.currentSize * 0.3, 
+                    0, 0
+                );
+
+                ctx.fill();
+                ctx.stroke();
+                ctx.restore();
+            }
+        }
+
+        // Initialize and assemble the structural grid of the rose layers
+        function initRose() {
+            petals = [];
+            globalAge = 0;
+            
+            const totalLayers = 8;
+            
+            // Build from outer layers inwards so outer petals draw first beneath inner ones
+            for (let layer = totalLayers; layer >= 0; layer--) {
+                // Outer layers need more petals to close gaps; inner layers need fewer
+                const petalsInLayer = 5 + (layer * 2); 
+                
+                for (let i = 0; i < petalsInLayer; i++) {
+                    petals.push(new Petal(layer, totalLayers, i, petalsInLayer));
+                }
+            }
+        }
+
+        // Seamless engine loop running 60fps
+        function animate() {
+            // Semi-transparent overlay clear gives a subtle motion blur elegance
+            ctx.fillStyle = 'rgba(7, 8, 10, 0.08)'; 
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Sort layers prior to rendering to preserve depth structure layers
+            petals.forEach(petal => {
+                petal.update();
+                petal.draw();
+            });
+
+            animationFrameId = requestAnimationFrame(animate);
+        }
+
+        // Handle canvas re-instantiation on window size shifts
+        window.addEventListener('resize', () => {
+            const size = Math.min(window.innerWidth, window.innerHeight) * 0.85;
+            canvas.width = size;
+            canvas.height = size;
+            initRose();
+        });
+
+        // Interactive reset action
+        window.addEventListener('click', () => {
+            cancelAnimationFrame(animationFrameId);
+            initRose();
+            animate();
+        });
+
+        // Kickstart the setup
+        initRose();
+        animate();
+    </script>
+</body>
+</html>
