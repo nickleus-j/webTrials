@@ -26,10 +26,10 @@ void WriteText(char *text, size_t capacity) {
             }
 
             text = temp;
-            capacity = new_capacity; // Update capacity after successful reallocation
+            capacity = new_capacity;
         }
 
-        text[count++] = (char)ch; // Store the character and increment count
+        text[count++] = (char)ch; 
     }
 
     text[count] = '\0'; // Null-terminate the string
