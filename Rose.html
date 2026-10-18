@@ -89,9 +89,7 @@
                 if (this.currentSize === 0) return;
 
                 ctx.save();
-                // Move origin to the center of the canvas
                 ctx.translate(canvas.width / 2, canvas.height / 2);
-                // Rotate canvas to match the specific alignment layout of this petal
                 ctx.rotate(this.angle);
 
                 // Create a beautiful radial gradient unique to each petal for realistic lighting
@@ -176,7 +174,6 @@
             animate();
         });
 
-        // Kickstart the setup
         initRose();
         animate();
     </script>

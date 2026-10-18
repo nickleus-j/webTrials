@@ -8,7 +8,7 @@ void WriteReverse(char *text,int length) {
     putchar('\n');
 }
 void WriteText(char *text, size_t capacity) {
-    size_t count = 0; // Number of characters stored
+    size_t count = 0; 
 
     printf("Enter text (enter a newline to stop):\n");
 
@@ -21,7 +21,7 @@ void WriteText(char *text, size_t capacity) {
 
             if (temp == NULL) {
                 fprintf(stderr, "Memory reallocation failed!\n");
-                free(text); // Free existing memory before exiting
+                free(text); 
                 return;
             }
 

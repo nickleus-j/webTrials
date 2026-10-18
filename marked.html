@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Daily Chronicle</title>
+    <!-- Include Marked.js to parse markdown strings into HTML -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@18.1.1/lib/marked.umd.min.js"></script>
+    <style>
+        /* --- Newspaper Styling --- */
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #fcfbf9;
+            color: #111;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .newspaper-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 4px double #111;
+            padding: 20px;
+        }
+
+        /* Header / Masthead */
+        header {
+            text-align: center;
+            border-bottom: 4px double #111;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 4rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .meta-bar {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #111;
+            border-bottom: 1px solid #111;
+            padding: 5px 0;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* Newspaper Grid Layout */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        /* Article Formatting */
+        .article {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Make the first article span across 2 columns (Lead Story) */
+        .article:nth-child(1) {
+            grid-column: span 2;
+        }
+
+        /* Make the second article take up the remaining side column */
+        .article:nth-child(2) {
+            grid-column: span 1;
+            border-left: 1px solid #ccc;
+            padding-left: 20px;
+        }
+
+        .article h2 {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 2rem;
+            margin-top: 0;
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+
+        /* The Multi-Column Effect for Text */
+        .article-content {
+            column-count: 2;
+            column-gap: 20px;
+            column-rule: 1px dotted #ddd;
+            text-align: justify;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Adjust columns for the smaller side article */
+        .article:nth-child(2) .article-content {
+            column-count: 1;
+        }
+
+        /* Drop cap for the first letter of the article */
+        .article-content > p:first-of-type::first-letter {
+            float: left;
+            font-size: 3.5rem;
+            line-height: 0.8;
+            padding-top: 4px;
+            padding-right: 8px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        /* Markdown structural styling inside articles */
+        .article-content h3 {
+            font-size: 1.2rem;
+            margin: 15px 0 5px 0;
+            column-span: all; /* Allows subheaders to break out of columns if desired */
+        }
+
+        .article-content ul {
+            padding-left: 20px;
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 900px) {
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            .article:nth-child(1), .article:nth-child(2) {
+                grid-column: span 1;
+                border-left: none;
+                padding-left: 0;
+            }
+            .article-content {
+                column-count: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="newspaper-container">
+        <header>
+            <h1>The Daily Chronicle</h1>
+            <div class="meta-bar">
+                <span>Vol. CXXVI No. 42</span>
+                <span id="current-date">October 17, 2026</span>
+                <span>Price: $5.10</span>
+            </div>
+        </header>
+
+        <main class="news-grid" id="news-layout"></main>
+    </div>
+
+    <script>
+        const articlesJSON = [
+            {
+                "title": "Breakthrough in Quantum Computing Shakes Tech World",
+                "markdown": "Scientists have successfully stabilized a **1,000-qubit system** at room temperature. This monumental milestone leaps past previous cryo-cooling constraints.\n\n### The Impact\nFor decades, quantum computing remained trapped inside liquid-nitrogen setups. With this new discovery, real-world applications in cryptography, logistics, and molecular modeling are suddenly years closer than anticipated.\n\n* Faster data processing\n* Unbreakable security layers\n* Instantaneous system calculations\n\nIndustry leaders claim this will redefine global digital infrastructure before the decade ends."
+            },
+            {
+                "title": "Local Bakery Wins Global Pastry Award",
+                "markdown": "A small family-owned shop on Main Street took home the gold yesterday. The annual *World Pastry Expo* awarded them top honors for their signature sourdough croissant.\n\nJudges noted the perfect lamination and local butter integration made it an instant classic among hundreds of international competitors."
+            },
+            {
+                "title": "Global Markets Rally Amid Tech Surge",
+                "markdown": "Stock indices jumped **3.4%** today following the tech sector breakthroughs. Investors are showing historic optimism as trading volumes reach all-time highs across major international exchanges.\n\nAnalysts predict a sustained bull run if implementation timelines hold steady through the next fiscal quarter."
+            }
+        ];
+
+        function renderNewspaper(articles) {
+            const container = document.getElementById('news-layout');
+            container.innerHTML = ''; // Clear existing content
+
+            articles.forEach(article => {
+                // Create article wrapper
+                const articleElement = document.createElement('article');
+                articleElement.classList.add('article');
+
+                // Create and set title
+                const titleElement = document.createElement('h2');
+                titleElement.textContent = article.title;
+                articleElement.appendChild(titleElement);
+
+                // Create content container
+                const contentElement = document.createElement('div');
+                contentElement.classList.add('article-content');
+                
+                // Use Marked.js to convert the markdown string into clean HTML strings
+                contentElement.innerHTML = marked.parse(article.markdown);
+                
+                articleElement.appendChild(contentElement);
+
+                // Append complete article to the layout grid
+                container.appendChild(articleElement);
+            });
+        }
+
+        // 3. Initialize the layout using the JSON data
+        renderNewspaper(articlesJSON);
+    </script>
+</body>
+</html>
