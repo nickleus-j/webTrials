@@ -19,11 +19,10 @@ export class DiamondComponent {
     const n = this.selectedSize;
     let result = '';
 
-    // Top half + middle
     for (let i = 1; i <= n; i++) {
       result += ' '.repeat(n - i) + '*'.repeat(2 * i - 1) + '\n';
     }
-    // Bottom half
+    
     for (let i = n - 1; i >= 1; i--) {
       result += ' '.repeat(n - i) + '*'.repeat(2 * i - 1) + '\n';
     }

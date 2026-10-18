@@ -1,7 +1,7 @@
 <h1>Mean</h1>
 <p>Enter Numbers Below: </p>
 <div class="number-box-container">
-  <input  *ngFor="let num of NumbersGiven; let i = index; trackBy: trackByIndex"
+  <input *ngFor="let num of NumbersGiven; let i = index; trackBy: trackByIndex"
       type="number" 
       [(ngModel)]="NumbersGiven[i]" 
       (ngModelChange)="onValueChange()"
